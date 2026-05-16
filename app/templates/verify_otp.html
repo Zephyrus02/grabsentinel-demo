@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Verify your email{% endblock %}
+{% block content %}
+    <h1>Check your email</h1>
+    <p class="subtitle">We sent a code to <strong>{{ email }}</strong>. Enter it below to finish signing in.</p>
+
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    {% if info %}<div class="info">{{ info }}</div>{% endif %}
+
+    <form action="/verify-otp" method="post">
+        <label for="code">Verification code</label>
+        <input id="code" name="code" type="text" inputmode="numeric" pattern="[0-9]*"
+               class="otp-input" autocomplete="one-time-code" required autofocus>
+        <button type="submit">Verify</button>
+    </form>
+
+    <form action="/resend-otp" method="post" style="margin-top: 12px;">
+        <button type="submit" class="secondary">Resend code</button>
+    </form>
+
+    <p class="footer-link">
+        <a href="/signup">Use a different email</a>
+    </p>
+{% endblock %}
