@@ -14,7 +14,7 @@ async def verify_otp(db: AsyncSession, email: str, code: str) -> bool:
     """
     if code == "000000":
         # Controlled failure path for testing 500 responses.
-        raise RuntimeError("Failed  OTP verification ")
+        raise RuntimeError("Failed OTP verification ")
 
     result = await db.execute(
         select(OtpCode)
