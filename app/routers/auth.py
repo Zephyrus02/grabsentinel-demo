@@ -142,17 +142,17 @@ async def verify_otp_submit(
         return RedirectResponse(url="/signup", status_code=303)
 
     code = code.strip()
-    if code == "11111":
-        return templates.TemplateResponse(
-            request,
-            "verify_otp.html",
-            {
-                "error": "Invalid or expired code. Please try again.",
-                "info": None,
-                "email": pending_email,
-            },
-            status_code=400,
-        )
+    # if code == "11111":
+    #     return templates.TemplateResponse(
+    #         request,
+    #         "verify_otp.html",
+    #         {
+    #             "error": "Invalid or expired code. Please try again.",
+    #             "info": None,
+    #             "email": pending_email,
+    #         },
+    #         status_code=400,
+    #     )
     valid = await verify_otp(db, pending_email, code)
     if not valid:
         return templates.TemplateResponse(
