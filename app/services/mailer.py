@@ -46,7 +46,7 @@ def send_otp_email(to_email: str, code: str) -> None:
     except Exception as exc:
         # Log the OTP to the server console as a dev fallback so testing can
         # continue without a verified Resend domain. Never do this in production.
-        logger.warning(
+        logger.error(
             "Failed to send OTP email to %s via Resend: %s. "
             "Dev fallback — OTP for %s is: %s",
             to_email,

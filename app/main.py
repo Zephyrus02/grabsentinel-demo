@@ -33,16 +33,8 @@ async def log_requests(request: Request, call_next):
 
     elapsed_ms = (time.perf_counter() - start_time) * 1000
     status = response.status_code
-    if status >= 500:
+    if status >= 400:
         logger.error(
-            "request_complete method=%s path=%s status=%s duration_ms=%.2f",
-            request.method,
-            request.url.path,
-            status,
-            elapsed_ms,
-        )
-    elif status >= 400:
-        logger.warning(
             "request_complete method=%s path=%s status=%s duration_ms=%.2f",
             request.method,
             request.url.path,
